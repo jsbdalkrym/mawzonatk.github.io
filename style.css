@@ -1,0 +1,153 @@
+@font-face{
+  font-family:'Thmanyah';
+  src:url('fonts/thmanyahsans-Light.woff2') format('woff2');
+  font-weight:300;
+  font-style:normal;
+  font-display:swap;
+}
+@font-face{
+  font-family:'Thmanyah';
+  src:url('fonts/thmanyahsans-Regular.woff2') format('woff2');
+  font-weight:400;
+  font-style:normal;
+  font-display:swap;
+}
+@font-face{
+  font-family:'Thmanyah';
+  src:url('fonts/thmanyahsans-Medium.woff2') format('woff2');
+  font-weight:500;
+  font-style:normal;
+  font-display:swap;
+}
+@font-face{
+  font-family:'Thmanyah';
+  src:url('fonts/thmanyahsans-Bold.woff2') format('woff2');
+  font-weight:700;
+  font-style:normal;
+  font-display:swap;
+}
+@font-face{
+  font-family:'Thmanyah';
+  src:url('fonts/thmanyahsans-Black.woff2') format('woff2');
+  font-weight:900;
+  font-style:normal;
+  font-display:swap;
+}
+
+:root{
+  --burgundy:#5B0E14;      /* برغندي داكن */
+  --burgundy-soft:#6E1520; /* درجة أفتح للخانات */
+  --sand:#F1E095;          /* رمل ذهبي */
+  --gray:#8d8484;
+  --green:#255E00;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Thmanyah',Tahoma,sans-serif;
+  background:var(--burgundy);
+  color:var(--sand);
+  min-height:100vh;
+  padding:28px 16px 56px;
+}
+.top{text-align:center;margin-bottom:36px}
+.top h1{font-size:clamp(3rem,11vw,5rem);font-weight:900;line-height:1.2}
+.top p{font-weight:300;font-size:1.1rem;margin-top:4px;opacity:.85}
+.top::after{content:'';display:block;width:72px;height:3px;border-radius:3px;background:var(--sand);margin:20px auto 0}
+main{max-width:720px;margin:0 auto}
+.hidden{display:none !important}
+
+/* الشبكة: جامعتين في كل صف */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{
+  background:var(--sand);
+  color:var(--burgundy);
+  border:none;
+  border-radius:14px;
+  padding:28px 14px;
+  min-height:140px;
+  font:inherit;
+  font-size:clamp(1rem,3.8vw,1.3rem);
+  font-weight:700;
+  line-height:1.6;
+  cursor:pointer;
+  box-shadow:inset 0 0 0 6px var(--sand), inset 0 0 0 7.5px rgba(91,14,20,.5);
+  outline:2px solid transparent;
+  transition:transform .15s, background .15s, color .15s, outline-color .15s;
+}
+.card:hover{
+  background:var(--burgundy);
+  color:var(--sand);
+  outline-color:var(--sand);
+  box-shadow:inset 0 0 0 6px var(--burgundy), inset 0 0 0 7.5px rgba(241,224,149,.6);
+}
+.card:active{transform:scale(.97)}
+.card:focus-visible,.back:focus-visible,.calc-btn:focus-visible,input:focus-visible{outline:3px solid var(--sand);outline-offset:3px}
+
+/* الحاسبة */
+.back{
+  background:none;border:1.5px solid var(--sand);color:var(--sand);
+  border-radius:10px;padding:8px 18px;font:inherit;font-weight:500;cursor:pointer;margin-bottom:22px;
+}
+.back:hover{background:var(--sand);color:var(--burgundy)}
+.fields{display:grid;gap:14px}
+.field{background:var(--burgundy-soft);border:1.5px solid rgba(241,224,149,.45);border-radius:12px;padding:14px 16px}
+.field label{display:flex;justify-content:space-between;align-items:center;font-weight:500;font-size:1.1rem;margin-bottom:10px}
+.field label span{background:var(--sand);color:var(--burgundy);border-radius:999px;padding:2px 12px;font-size:.95rem;font-weight:700}
+.field input{
+  width:100%;background:var(--sand);color:var(--burgundy);border:none;border-radius:8px;
+  padding:12px;font:inherit;font-size:1.2rem;font-weight:700;text-align:center;
+}
+.field input::placeholder{color:rgba(91,14,20,.5);font-weight:400}
+.field input.bad{outline:3px solid #ff7a7a}
+.calc-btn{
+  display:block;width:100%;margin-top:22px;padding:14px;border:none;border-radius:10px;
+  font:inherit;font-size:1.25rem;font-weight:700;color:#2a0a0d;
+  background:var(--gray);cursor:not-allowed;transition:background .2s,color .2s;
+}
+.calc-btn:not(:disabled){background:var(--green);color:#fff;cursor:pointer}
+.calc-btn:not(:disabled):hover{filter:brightness(1.12)}
+.result{
+  margin-top:22px;background:var(--sand);color:var(--burgundy);
+  border-radius:16px;padding:26px 20px;text-align:center;
+  box-shadow:inset 0 0 0 6px var(--sand), inset 0 0 0 7.5px rgba(91,14,20,.5);
+  animation:pop .25s ease-out;
+}
+.result small{display:block;font-size:1rem;font-weight:500}
+.result strong{font-size:3.4rem;font-weight:900;display:block;line-height:1.4}
+@keyframes pop{from{transform:scale(.92);opacity:0}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
+
+/* الشعار */
+.logo{display:block;margin:0 auto;width:min(88%,430px);height:auto}
+.tagline{font-weight:500}
+body:not(.is-home) .logo{width:min(55%,220px)}
+body:not(.is-home) .tagline{display:none}
+body:not(.is-home) .top{margin-bottom:22px}
+
+/* عنوان الصفحة */
+.heading{font-size:1.7rem;font-weight:900;margin-bottom:22px;padding-bottom:12px;border-bottom:2px solid rgba(241,224,149,.35)}
+.heading small{display:block;font-size:1rem;font-weight:400;opacity:.85;margin-top:4px}
+
+/* شعارات الجامعات (مستقبلاً) */
+.card img{max-width:80%;max-height:84px;object-fit:contain}
+/* البطاقة الأخيرة لو العدد فردي */
+.grid .card:last-child:nth-child(odd){grid-column:1/-1;justify-self:center;width:calc(50% - 8px)}
+
+.top{margin-bottom:40px}
+.logo{display:block;width:min(80vw,400px);height:auto;margin:0 auto 14px}
+.top::after{margin-top:24px}
+.inner .top{margin-bottom:24px}
+.inner .top p,.inner .top::after{display:none}
+.inner .logo{width:min(50vw,190px);margin:0 auto}
+.card:last-child:nth-child(odd){grid-column:1/-1}
+.card.sm{min-height:96px;padding:18px 12px}
+.card.colored{background:var(--c);color:#fff;box-shadow:inset 0 0 0 6px var(--c),inset 0 0 0 7.5px rgba(255,255,255,.55)}
+.card.colored:hover{background:var(--c);color:#fff;outline-color:var(--sand)}
+.doc{line-height:2;font-size:1.05rem;margin-bottom:14px}
+ol.doc{padding-right:22px}
+.sec{font-size:1.2rem;font-weight:700;margin:22px 0 10px}
+.row{display:flex;align-items:center;gap:12px;background:var(--burgundy-soft);border:1px solid rgba(241,224,149,.4);border-radius:12px;padding:10px 14px;margin-bottom:10px;line-height:1.7}
+.ic{flex:none;width:40px;height:40px;border-radius:50%;background:var(--sand);display:grid;place-items:center;font-size:1.25rem}
+footer{max-width:720px;margin:56px auto 0;text-align:center;font-size:.9rem}
+footer p{opacity:.85;margin-bottom:6px}
+.link{background:none;border:none;color:var(--sand);font:inherit;text-decoration:underline;cursor:pointer;padding:6px 12px}
